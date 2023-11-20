@@ -9,13 +9,24 @@ import 'package:get/get.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+      @override
+  void initState() {
+    super.initState();
+    // Fetch country data when the widget is first created
+    Provider.of<CovidDataProvider>(context, listen: false).fetchCovidData();
+  }
+  @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<CovidDataProvider>(context);
-    provider.fetchCovidData();
+    // final provider = Provider.of<CovidDataProvider>(context);
+    // provider.fetchCovidData();
     // Map<String, double> dataMap = {
     //   "Total": 40,
     //   "Recovered": 10,
